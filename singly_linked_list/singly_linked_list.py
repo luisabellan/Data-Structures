@@ -111,12 +111,12 @@ class LinkedList:
         # If max is less then head.data then  
         # assign value of head.data to max  
         # otherwise node point to next node.  
-        if self > max: 
-          max = self
+        if self.head > max: 
+          self = self.head
         
-        self.head = self.head.next
+        self = self.next
       
-        return max
+    return max
    
 
 
