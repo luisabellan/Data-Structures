@@ -5,7 +5,6 @@
 # if you want all of the tests to pass in
 # test_singly_linked_list.py.
 # Not a big deal at all; just thought I'd mention
-import math
 
 class Node:
   def __init__(self, value=None, next_node=None):
@@ -31,6 +30,7 @@ class LinkedList:
       current_node = current_node.next_node # update the tracker node to the next node
 
     return output
+
   def add_to_head(self, value):
     # create a node to add
     new_node = Node(value)
@@ -72,9 +72,8 @@ class LinkedList:
     self.head = self.head.next_node
     return head_value
 
-  def get_max(self):
-      for i in self:
-          print math.max(i)
+  # def get_max(self):
+  #     print() max(i)
 
 
 
@@ -95,14 +94,14 @@ class LinkedList:
     return False
 
 
-# example
-# linked_list = LinkedList()
-#
-# linked_list.add_to_head(0)
-# linked_list.add_to_tail(1)
-# linked_list.add_to_tail(2)
-# linked_list.add_to_tail(3)
-# print(linked_list)
+#example
+linked_list = LinkedList()
+
+linked_list.add_to_head(0)
+linked_list.add_to_tail(1)
+linked_list.add_to_tail(2)
+linked_list.add_to_tail(3)
+print(linked_list)
 # # print(f'does our LL contain 0? {linked_list.contains(0)}')
 # # print(f'does our LL contain 1? {linked_list.contains(1)}')
 # # print(f'does our LL contain 2? {linked_list.contains(2)}')
