@@ -9,10 +9,10 @@
 class Node:
   def __init__(self, value=None, next=None):
     self.value = value
-    self.next_node = next
+    self.next = next
 
   def __iter__(self):
-    node = self.head
+    node = self
     while node:
       yield node
       node = node.next
@@ -24,6 +24,8 @@ class LinkedList:
       self.head = None
       # stores a node that is the end of the list
       self.tail = None
+      # Stores its size
+      self.size = 0
 
   def __iter__(self):
       node = self.head
@@ -52,11 +54,15 @@ class LinkedList:
     if self.head is None and self.tail is None:
       self.head = new_node
       self.tail = new_node
+      self.size += 1
+      
     else:
       # new_node should point to current head
-      new_node.next_node = self.head
+      new_node.next = self.head
       # move head to new node
       self.head = new_node
+      self.size += 1
+      
 
   def add_to_tail(self, value):
     # create a node to add
@@ -65,10 +71,12 @@ class LinkedList:
     if self.head is None and self.tail is None:
       self.head = new_node
       self.tail = new_node
+      self.size += 1
     else:
       # point the node at the current tail, to the new node
-      self.tail.next_node = new_node
+      self.tail.next = new_node
       self.tail = new_node
+      self.size += 1
 
   # remove the head and return its value
   def remove_head(self):
@@ -76,19 +84,26 @@ class LinkedList:
     if not self.head:
       return None
     # if list only has one element, set head and tail to None
-    if self.head.next_node is None:
+    if self.head.next is None:
       head_value = self.head.value
       self.head = None
       self.tail = None
+      self.size -= 1
       return head_value
     # otherwise we have more elements in the list
     head_value = self.head.value
-    self.head = self.head.next_node
+    self.head = self.head.next
+    self.size -= 1
     return head_value
 
-  #   def get_max(self):
-  #      for i in self:
-  #          return max(i) 
+  def get_max(self):
+   
+    array = self
+    for i in array:
+      if array.size > 0:
+        return max(i)
+    else:
+      return None 
 
 
 
@@ -105,7 +120,7 @@ class LinkedList:
         return True
 
       # otherwise, go to the next node
-      current_node = current_node.next_node
+      current_node = current_node.next
     return False
 
 
