@@ -96,14 +96,28 @@ class LinkedList:
     self.size -= 1
     return head_value
 
-  def get_max(self):
+  def get_max(self):  
+    
+  
+    # Declare a max variable and initialize  
+    # it with INT_MIN value.  
+    # INT_MIN is integer type and its value  
+    # is -32767 or less.  
+    max = -32767
+  
+    # Check loop while head not equal to None  
+    while (self != None): 
+      
+        # If max is less then head.data then  
+        # assign value of head.data to max  
+        # otherwise node point to next node.  
+        if self > max: 
+          max = self
+        
+        self.head = self.head.next
+      
+        return max
    
-    array = self
-    for i in array:
-      if array.size > 0:
-        return max(i)
-    else:
-      return None 
 
 
 
