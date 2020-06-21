@@ -55,14 +55,14 @@ class LinkedList:
       self.head = new_node
       self.tail = new_node
       self.size += 1
-      
+
     else:
       # new_node should point to current head
       new_node.next = self.head
       # move head to new node
       self.head = new_node
       self.size += 1
-      
+
 
   def add_to_tail(self, value):
     # create a node to add
@@ -96,28 +96,59 @@ class LinkedList:
     self.size -= 1
     return head_value
 
-  def get_max(self):  
-    
-  
-    # Declare a max variable and initialize  
-    # it with INT_MIN value.  
-    # INT_MIN is integer type and its value  
-    # is -32767 or less.  
-    max = -32767
-  
-    # Check loop while head not equal to None  
-    while (self != None): 
-      
-        # If max is less then head.data then  
-        # assign value of head.data to max  
-        # otherwise node point to next node.  
-        if self.head > max: 
-          self = self.head
-        
-        self = self.next
-      
-    return max
-   
+  def get_max(self):
+      self.max = -32767
+
+      # if list is empty, do nothing
+      if not self.head:
+        return None
+
+      # if list only has one element, set head and tail to None
+      if self.head.next is None:
+        self.max = self.head.value
+
+        return self.head.value
+
+      while self.head != None:
+          # more than one element
+          if self.max < self.head.value:
+              self.max = self.head.value
+              print(f"self = {self}")
+              print(f"self = {self.max}")
+              return self.max
+
+
+
+      # Declare a max variable and initialize
+      # it with INT_MIN value.
+      # INT_MIN is integer type and its value
+      # is -32767 or less.
+      #self.max = -32767
+
+      # Check loop while head not equal to None
+      #  while self.head != None:
+
+
+          # If max is less then self.head.value then
+          # assign value of self.head to max
+          # otherwise node point to next node.
+          # print(f"self = {self}")
+          # print(f"self.max = {self.max}")
+          # print(f"self.head.value = {self.head.value}")
+          # if self.max < self.head.value:
+          #     self.max = self.head.value
+          #     print(f"self = {self}")
+          #     print(f"self = {self.max}")
+          #     return self.max
+
+
+          # else:
+          #     self.head = self.next.value
+
+
+
+
+
 
 
 
@@ -139,13 +170,15 @@ class LinkedList:
 
 
 # example
-# linked_list = LinkedList()
-#
-# linked_list.add_to_head(0)
-# linked_list.add_to_tail(1)
-# linked_list.add_to_tail(2)
-# linked_list.add_to_tail(3)
-# print(linked_list)
+linked_list = LinkedList()
+
+linked_list.add_to_head(0)
+linked_list.add_to_tail(1)
+linked_list.add_to_tail(2)
+linked_list.add_to_tail(3)
+print(linked_list)
+print(linked_list.get_max())
+
 # # print(f'does our LL contain 0? {linked_list.contains(0)}')
 # # print(f'does our LL contain 1? {linked_list.contains(1)}')
 # # print(f'does our LL contain 2? {linked_list.contains(2)}')
