@@ -102,7 +102,7 @@ class LinkedList:
         # Declare a max variable and initialize
         # it with INT_MIN value.
         # INT_MIN is integer type and its value
-        # is -32767 or less.
+        # is -32767 or less..
         global max
 
         for i in self:
