@@ -1,4 +1,4 @@
-#Just a FYI: If you use the code from today's
+# Just a FYI: If you use the code from today's
 # lecture for the singly-linked-list,
 # sticking it in the singly_linked_list.py file,
 # you will need to add a get_max() method
@@ -6,178 +6,156 @@
 # test_singly_linked_list.py.
 # Not a big deal at all; just thought I'd mention
 
-class Node:
-  def __init__(self, value=None, next=None):
-    self.value = value
-    self.next = next
+max = None
 
-  def __iter__(self):
-    node = self
-    while node:
-      yield node
-      node = node.next
+
+class Node:
+    def __init__(self, value=None, next=None):
+        self.value = value
+        self.next = next
+
+    ''' def __iter__(self):
+        node = self
+        while node:
+            yield node
+            node = node.next '''
 
 
 class LinkedList:
-  def __init__(self):
-      # Stores a node, that corresponds to our first node in the list
-      self.head = None
-      # stores a node that is the end of the list
-      self.tail = None
-      # Stores its size
-      self.size = 0
+    def __init__(self):
+        # Stores a node, that corresponds to our first node in the list
+        self.head = None
+        # stores a node that is the end of the list
+        self.tail = None
+        # Stores its size
+        self.size = 0
 
-  def __iter__(self):
-      node = self.head
-      while node:
-          yield node
-          node = node.next
+    def __iter__(self):
+        node = self.head
+        while node:
+            yield node
+            node = node.next
 
+    # return all values in the list a -> b -> c -> d -> None
 
+    def __str__(self):
+        output = ''
+        current_node = self.head  # create a tracker node variable
+        while current_node is not None:  # loop until its NONE
 
+            output += f'{current_node.value} -> '
 
-  # return all values in the list a -> b -> c -> d -> None
-  def __str__(self):
-    output = ''
-    current_node = self.head # create a tracker node variable
-    while current_node is not None: # loop until its NONE
+            current_node = current_node.next  # update the tracker node to the next node
 
-      output += f'{current_node.value} -> '
+        return output
 
-      current_node = current_node.next # update the tracker node to the next node
+    def add_to_head(self, value):
+        # create a node to add
+        new_node = Node(value)
+        # check if list is empty
+        if self.head is None and self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+            self.size += 1
 
-    return output
-  def add_to_head(self, value):
-    # create a node to add
-    new_node = Node(value)
-    # check if list is empty
-    if self.head is None and self.tail is None:
-      self.head = new_node
-      self.tail = new_node
-      self.size += 1
+        else:
+            # new_node should point to current head
+            new_node.next = self.head
+            # move head to new node
+            self.head = new_node
+            self.size += 1
 
-    else:
-      # new_node should point to current head
-      new_node.next = self.head
-      # move head to new node
-      self.head = new_node
-      self.size += 1
+    def add_to_tail(self, value):
+        # create a node to add
+        new_node = Node(value)
+        # check if list is empty
+        if self.head is None and self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+            self.size += 1
+        else:
+            # point the node at the current tail, to the new node
+            self.tail.next = new_node
+            self.tail = new_node
+            self.size += 1
 
+    # remove the head and return its value
+    def remove_head(self):
+        # if list is empty, do nothing
+        if not self.head:
+            return None
+        # if list only has one element, set head and tail to None
+        if self.head.next is None:
+            head_value = self.head.value
+            self.head = None
+            self.tail = None
+            self.size -= 1
+            return head_value
+        # otherwise we have more elements in the list
+        head_value = self.head.value
+        self.head = self.head.next
+        self.size -= 1
+        return head_value
 
-  def add_to_tail(self, value):
-    # create a node to add
-    new_node = Node(value)
-    # check if list is empty
-    if self.head is None and self.tail is None:
-      self.head = new_node
-      self.tail = new_node
-      self.size += 1
-    else:
-      # point the node at the current tail, to the new node
-      self.tail.next = new_node
-      self.tail = new_node
-      self.size += 1
+    def get_max(self):
 
-  # remove the head and return its value
-  def remove_head(self):
-    # if list is empty, do nothing
-    if not self.head:
-      return None
-    # if list only has one element, set head and tail to None
-    if self.head.next is None:
-      head_value = self.head.value
-      self.head = None
-      self.tail = None
-      self.size -= 1
-      return head_value
-    # otherwise we have more elements in the list
-    head_value = self.head.value
-    self.head = self.head.next
-    self.size -= 1
-    return head_value
+        # Declare a max variable and initialize
+        # it with INT_MIN value.
+        # INT_MIN is integer type and its value
+        # is -32767 or less.
+        global max
 
-  def get_max(self):
-      self.max = -32767
+        for i in self:
+            # no elements
+            if i.value != None:
+                print("There are no elements")
+                max = None
+                print(f"i.value = {i.value}")
+                print(f"max = {max}")
+                break
 
-      # if list is empty, do nothing
-      if not self.head:
-        return None
+            # one element
+            if i.next == None and i.value > max:
+                print("There is only one element")
+                max = i.value
+                print(f"i.value = {i.value}")
+                print(f"max = {max}")
+                break
 
-      # if list only has one element, set head and tail to None
-      if self.head.next is None:
-        self.max = self.head.value
+            # more than one element
+            if i.next == None and i.value > max:
+                print("There are more than one element")
+                max = i.value
+                print(f"i.value = {i.value}")
+                print(f"max = {max}")
 
-        return self.head.value
+        return max
 
-      while self.head != None:
-          # more than one element
-          if self.max < self.head.value:
-              self.max = self.head.value
-              print(f"self = {self}")
-              print(f"self = {self.max}")
-              return self.max
+    def contains(self, value):
+        if self.head is None:
+            return False
 
+        # Loop through each node, until we see the value, or we cannot go further
+        current_node = self.head
 
+        while current_node is not None:
+            # check if this is the node we are looking for
+            if current_node.value == value:
+                return True
 
-      # Declare a max variable and initialize
-      # it with INT_MIN value.
-      # INT_MIN is integer type and its value
-      # is -32767 or less.
-      #self.max = -32767
-
-      # Check loop while head not equal to None
-      #  while self.head != None:
-
-
-          # If max is less then self.head.value then
-          # assign value of self.head to max
-          # otherwise node point to next node.
-          # print(f"self = {self}")
-          # print(f"self.max = {self.max}")
-          # print(f"self.head.value = {self.head.value}")
-          # if self.max < self.head.value:
-          #     self.max = self.head.value
-          #     print(f"self = {self}")
-          #     print(f"self = {self.max}")
-          #     return self.max
-
-
-          # else:
-          #     self.head = self.next.value
-
-
-
-
-
-
-
-
-  def contains(self, value):
-    if self.head is None:
-      return False
-
-    # Loop through each node, until we see the value, or we cannot go further
-    current_node = self.head
-
-    while current_node is not None:
-      # check if this is the node we are looking for
-      if current_node.value == value:
-        return True
-
-      # otherwise, go to the next node
-      current_node = current_node.next
-    return False
+            # otherwise, go to the next node
+            current_node = current_node.next
+        return False
 
 
 # example
-linked_list = LinkedList()
-
+''' linked_list = LinkedList()
 linked_list.add_to_head(0)
 linked_list.add_to_tail(1)
 linked_list.add_to_tail(2)
 linked_list.add_to_tail(3)
 print(linked_list)
-print(linked_list.get_max())
+linked_list.get_max() '''
 
 # # print(f'does our LL contain 0? {linked_list.contains(0)}')
 # # print(f'does our LL contain 1? {linked_list.contains(1)}')
