@@ -63,7 +63,7 @@ return elements in Last In First Out order.
 # print(f"Size: {stack.size}")
 #
 
-# Using a linked lists
+# Using linked lists
 
 
 class Node:
