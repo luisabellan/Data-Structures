@@ -1,22 +1,8 @@
-# Just a FYI: If you use the code from today's
-# lecture for the singly-linked-list,
-# sticking it in the singly_linked_list.py file,
-# you will need to add a get_max() method
-# if you want all of the tests to pass in
-# test_singly_linked_list.py.
-# Not a big deal at all; just thought I'd mention
-
 
 class Node:
     def __init__(self, value=None, next=None):
         self.value = value
         self.next = next
-
-    ''' def __iter__(self):
-        node = self
-        while node:
-            yield node
-            node = node.next '''
 
 
 class LinkedList:
@@ -106,7 +92,6 @@ class LinkedList:
                 max_val = current.value
             current = current.next
         return max_val
-      
 
     def contains(self, value):
         if self.head is None:
@@ -142,66 +127,3 @@ print("We add 101 to the tail")
 linked_list.add_to_tail(101)
 print(linked_list)
 print(linked_list.get_max())
-
-
-# # print(f'does our LL contain 0? {linked_list.contains(0)}')
-# # print(f'does our LL contain 1? {linked_list.contains(1)}')
-# # print(f'does our LL contain 2? {linked_list.contains(2)}')
-
-# linked_list.add_to_head(2)
-# # print(f'the start of the list is {linked_list.head.value}')
-# linked_list.add_to_head(5)
-# # print(f'the start of the list is {linked_list.head.value}')
-# linked_list.remove_head()
-# # print(f'the start of the list is {linked_list.head.value}')
-
-
-# import unittest
-# from linked_list import LinkedList
-
-# class LinkedListTests(unittest.TestCase):
-#     def setUp(self):
-#         self.list = LinkedList()
-
-#     def test_add_to_tail(self):
-#         self.list.add_to_tail(1)
-#         self.assertEqual(self.list.tail.value, 1)
-#         self.assertEqual(self.list.head.value, 1)
-#         self.list.add_to_tail(2)
-#         self.assertEqual(self.list.tail.value, 2)
-#         self.assertEqual(self.list.head.value, 1)
-
-#     def test_contains(self):
-#         self.list.add_to_tail(1)
-#         self.list.add_to_tail(2)
-#         self.list.add_to_tail(5)
-#         self.list.add_to_tail(10)
-#         self.assertTrue(self.list.contains(10))
-#         self.assertTrue(self.list.contains(2))
-#         self.assertFalse(self.list.contains(1000))
-
-#     def test_remove_head(self):
-#         self.list.add_to_tail(10)
-#         self.list.add_to_tail(20)
-#         self.assertEqual(self.list.remove_head(), 10)
-#         self.assertFalse(self.list.contains(10))
-#         self.assertEqual(self.list.remove_head(), 20)
-#         self.assertFalse(self.list.contains(20))
-
-#         self.list.add_to_tail(10)
-#         self.assertEqual(self.list.remove_head(), 10)
-#         self.assertIsNone(self.list.head)
-#         self.assertIsNone(self.list.tail)
-#         self.assertIsNone(self.list.remove_head())
-
-#     # def test_get_max(self):
-#     #     self.assertIsNone(self.list.get_max())
-#     #     self.list.add_to_tail(100)
-#     #     self.assertEqual(self.list.get_max(), 100)
-#     #     self.list.add_to_tail(55)
-#     #     self.assertEqual(self.list.get_max(), 100)
-#     #     self.list.add_to_tail(101)
-#     #     self.assertEqual(self.list.get_max(), 101)
-
-# if __name__ == '__main__':
-#     unittest.main()
