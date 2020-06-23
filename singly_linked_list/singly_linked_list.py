@@ -96,6 +96,7 @@ class LinkedList:
         return head_value
 
     def get_max(self):
+
         if not self.head:
             return None
         max_val = self.head.value
@@ -105,6 +106,7 @@ class LinkedList:
                 max_val = current.value
             current = current.next
         return max_val
+      
 
     def contains(self, value):
         if self.head is None:
