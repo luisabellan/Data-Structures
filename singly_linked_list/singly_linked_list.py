@@ -6,8 +6,6 @@
 # test_singly_linked_list.py.
 # Not a big deal at all; just thought I'd mention
 
-max = None
-
 
 class Node:
     def __init__(self, value=None, next=None):
@@ -98,38 +96,15 @@ class LinkedList:
         return head_value
 
     def get_max(self):
-
-        # Declare a max variable and initialize
-        # it with INT_MIN value.
-        # INT_MIN is integer type and its value
-        # is -32767 or less.
-        global max
-
-        for i in self:
-            # no elements
-            if i.value != None:
-                print("There are no elements")
-                max = None
-                print(f"i.value = {i.value}")
-                print(f"max = {max}")
-                break
-
-            # one element
-            if i.next == None and i.value > max:
-                print("There is only one element")
-                max = i.value
-                print(f"i.value = {i.value}")
-                print(f"max = {max}")
-                break
-
-            # more than one element
-            if i.next == None and i.value > max:
-                print("There are more than one element")
-                max = i.value
-                print(f"i.value = {i.value}")
-                print(f"max = {max}")
-
-        return max
+        if not self.head:
+            return None
+        max_val = self.head.value
+        current = self.head
+        while current:
+            if current.value > max_val:
+                max_val = current.value
+            current = current.next
+        return max_val
 
     def contains(self, value):
         if self.head is None:
@@ -149,13 +124,23 @@ class LinkedList:
 
 
 # example
-''' linked_list = LinkedList()
-linked_list.add_to_head(0)
-linked_list.add_to_tail(1)
-linked_list.add_to_tail(2)
-linked_list.add_to_tail(3)
+linked_list = LinkedList()
+
+print("We add 100 to the tail")
+linked_list.add_to_tail(100)
 print(linked_list)
-linked_list.get_max() '''
+print(linked_list.get_max())
+
+print("We add 55 to the tail")
+linked_list.add_to_tail(55)
+print(linked_list)
+print(linked_list.get_max())
+
+print("We add 101 to the tail")
+linked_list.add_to_tail(101)
+print(linked_list)
+print(linked_list.get_max())
+
 
 # # print(f'does our LL contain 0? {linked_list.contains(0)}')
 # # print(f'does our LL contain 1? {linked_list.contains(1)}')
