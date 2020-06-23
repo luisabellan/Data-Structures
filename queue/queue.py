@@ -73,7 +73,7 @@ Stretch: What if you could only use instances of your Stack class to implement t
 
 
 
-# Using a linked list
+# Using linked list
 class Node:
     def __init__(self, value):
         self.value = value
