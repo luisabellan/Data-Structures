@@ -1,7 +1,7 @@
 """
-Binary search trees are a data structure that enforce an ordering over 
-the data they store. That ordering in turn makes it a lot more efficient 
-at searching for a particular piece of data in the tree. 
+Binary search trees are a data structure that enforce an ordering over
+the data they store. That ordering in turn makes it a lot more efficient
+at searching for a particular piece of data in the tree.
 
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
@@ -17,22 +17,37 @@ class BSTNode:
         self.left = None
         self.right = None
 
+
     # Insert the given value into the tree
     def insert(self, value):
         # I'm here
         # take the current value of our node (self.value)
         # compare to the new value we want to insert
 
+
+
         # if new value < self.value
         # IF self.left is already taken by a node
         # make that (left) node, call insert
         # set the left to the new node with the new value
 
+        if value < self.value:
+            if self.left is not None:
+                self.left.insert(value)
+            else:
+                self.left = BSTNode(value)
+
         # if new value >= self.value
         # IF self.right is already taken by a node
         # make that (right) node call insert
         # set the right child to the new node with new value
-        pass
+        elif value >= self.value:
+            if self.right is not None:
+                self.right.insert(value)
+            else:
+                self.right = BSTNode(value)
+
+
 
     # Return True if the tree contains the value
     # False if it does not
@@ -72,7 +87,14 @@ class BSTNode:
         # call function on the current value fn(self.value)
         # if you can go left, call for_each on the left tree
         # if you can go right, call for_each on the right tree
-        pass
+        fn(self.value)
+        if self is None:
+            self.for_each(fn)
+        if self.left is not None:
+            self.left.for_each(fn)
+        if self.right is not None:
+            self.right.for_each(fn)
+
 
     # Part 2 -----------------------
 
