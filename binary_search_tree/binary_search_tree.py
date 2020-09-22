@@ -65,7 +65,7 @@ class BSTNode:
             found = self.left.contains(target)
 
         # if current value >= target
-        if self.value >= target:
+        if self.value >= target: #the equals sign is not needed here because the case "self.value == target" is already contemplated above
             # check if right subtree contains target
             # if you cannot go right, return False
             if self.right is None:
@@ -75,23 +75,33 @@ class BSTNode:
         return found
 
     # Return the maximum value found in the tree
-    def get_max(self):
+    def get_max(self): # it can be done iteratively or recursively
+
+        # done recursively:
+
         # the largest value will always be to the right of the current node
         # if we can go right, lets find the largest number there by calling get_max on the right subtree
         # if we cannot go right, return the current value
-
         # Call the function `fn` on the value of each node
-        pass
+
+        if self.right is None:
+            return self.value
+        return self.right.get_max()
+
+
 
     def for_each(self, fn):
+
         # call function on the current value fn(self.value)
-        # if you can go left, call for_each on the left tree
-        # if you can go right, call for_each on the right tree
         fn(self.value)
         if self is None:
             self.for_each(fn)
+
+        # if you can go left, call for_each on the left tree
         if self.left is not None:
             self.left.for_each(fn)
+
+        # if you can go right, call for_each on the right tree
         if self.right is not None:
             self.right.for_each(fn)
 
@@ -106,11 +116,22 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
+        #create a queue for nodes
+        # add the first node to the queue
+        # while queue is not empty
+            # remove the first node from the queue
+            # print the removed nodes
+            # add all children into the queue
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
+        # create a stack for nodes
+        # add the first node to the stack
+        # while the stack is not empty
+            # get the current node from the top of the stack
+            # print that node
         pass
 
     # Stretch Goals -------------------------
